@@ -31,3 +31,15 @@
 [x] doctor have many orders
 [x] order belongsTo one department
 [x] order and equipment manytomany# inventory_admin_app
+
+## INATALTION STEPS
+
+cp .env.example .env
+
+npm install
+
+node ace migration:run
+
+node ace db:seed
+
+node ace serve --watch
