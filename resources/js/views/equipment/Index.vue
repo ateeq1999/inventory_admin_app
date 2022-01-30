@@ -106,7 +106,7 @@ import { mapActions, mapGetters } from 'vuex'
         { text: 'quantity', value: 'quantity', align: 'start', sortable: true },
         { text: 'is_expire', value: 'is_expire', align: 'start', sortable: true },
         { text: 'expire_date', value: 'expire_date', align: 'start', sortable: true },
-        { text: 'unit_id', value: 'unit_id', align: 'start', sortable: true },
+        { text: 'unit', value: 'unit.name', align: 'start', sortable: true },
         { text: 'is_active', value: 'is_active', align: 'start', sortable: true },
         { text: 'Actions', value: 'actions', sortable: false },
       ],

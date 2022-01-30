@@ -81,8 +81,8 @@
     },
     data: () => ({
       loader: false,
-      email: 'admin@admin.com',
-      password: 'password',
+      email: '',
+      password: '',
       loading: false
     }),
     computed: {

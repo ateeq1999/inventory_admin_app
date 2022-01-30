@@ -13,6 +13,16 @@
           <v-list-item-title>{{ text }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      <v-spacer></v-spacer>
+      <v-list-item @click="logout">
+        <v-list-item-icon>
+          <v-icon>{{ 'mdi-logout' }}</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>{{ 'Logout' }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -35,6 +45,16 @@ export default {
       ],
     };
   },
+  methods: {
+    logout: function () {
+      this.$store.dispatch('Auth/logout')
+      .then(() => {
+          this.loader = false
+          this.$router.push('/')
+      })
+      .catch(err => console.log(err))
+    }
+  }
 };
 </script>
 

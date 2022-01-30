@@ -9,7 +9,7 @@ export default class CreateEquipmentValidator {
 		name: schema.string({}),
 		quantity: schema.number(),
 		is_expire: schema.boolean(),
-		expire_date: schema.date(),
+		// expire_date: schema.date(),
 		unit_id: schema.string({}),
 		is_active: schema.boolean(),
 	})
@@ -18,7 +18,7 @@ export default class CreateEquipmentValidator {
 		'name.required': 'name is required',
 		'quantity.required': 'quantity is required',
 		'is_expire': 'is_expire is required',
-		'expire_date.required': 'expire_date is required',
+		// 'expire_date.required': 'expire_date is required',
 		'unit_id.required': 'unit_id is required',
 		'is_active': 'is_active is required',
 	}

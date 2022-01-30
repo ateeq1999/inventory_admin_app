@@ -1,10 +1,11 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Equipment from 'App/Models/Equipment'
 import CreateEquipmentValidator from 'App/Validators/CreateEquipmentValidator'
+import { DateTime } from 'luxon'
 
 export default class EquipmentController {
 	public async index ({ response }: HttpContextContract) {
-		const equipment = await Equipment.all()
+		const equipment = await Equipment.query().preload('unit')
 
 		return response.status(200).json(equipment)
 	}
@@ -16,11 +17,22 @@ export default class EquipmentController {
 	public async store ({ request, response }: HttpContextContract) {
 		const data = await request.validate(CreateEquipmentValidator)
 
-		const equipment = await Equipment.create(data)
+		if(data.is_expire){
+			let expire_date = request.input('expire_date')
 
-		await equipment.save()
+			const equipment = await Equipment.create({ ...data, expire_date })
+	
+			await equipment.save()
+	
+			return response.status(201).json(equipment)
+		}else{
+			const equipment = await Equipment.create({ ...data, expire_date: DateTime.now().plus({ months: 1 }) })
+	
+			await equipment.save()
+	
+			return response.status(201).json(equipment)
+		}
 
-		return response.status(201).json(equipment)
 	}
 
 	public async show ({ response, params }: HttpContextContract) {

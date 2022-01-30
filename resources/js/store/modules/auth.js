@@ -15,10 +15,10 @@ const actions = {
     login({commit}, user){
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        axios.post('/auth/admin/login', user)
+        axios.post('/auth/manager/login', user)
         .then(resp => {
           const token = resp.data.token
-          const auth = resp.data.admin
+          const auth = resp.data.manager
           localStorage.setItem('token', token)
           localStorage.setItem('auth', JSON.stringify(auth))
           commit('auth_success', token, auth)
@@ -34,7 +34,7 @@ const actions = {
     logout({commit}){
       return new Promise((resolve, reject) => {
         try {
-          commit('/auth/admin/logout')
+          commit('/auth/manager/logout')
           localStorage.clear();
           delete axios.defaults.headers.common['Authorization']
           resolve()

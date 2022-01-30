@@ -6,9 +6,12 @@ import {
   BaseModel,
   manyToMany,
   ManyToMany,
+  belongsTo,
+  BelongsTo,
 } from '@ioc:Adonis/Lucid/Orm'
 import UuidHook from './hooks/UuidHook'
 import Order from './Order'
+import Unit from './Unit'
 
 export default class Equipment extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -68,4 +71,10 @@ export default class Equipment extends BaseModel {
     pivotColumns: ['quantity'],
   })
   public orders: ManyToMany<typeof Order>
+
+  @belongsTo(() => Unit, {
+    foreignKey: "unit_id",
+    localKey: "id",
+  })
+  public unit: BelongsTo<typeof Unit>
 }
